@@ -1,0 +1,55 @@
+<h4>All genres</h4>
+<p>Click on them to update or see all movies this genres</p>
+
+<ul class="collapsible" #collapse>
+  <li *ngFor="let genre of genres">
+    <div class="collapsible-header">
+      <div class="name">
+      {{genre.name}}</div>
+      <a class="btn btn-small delete"
+         (click)="onDeleteGenre($event, genre)"><i class="material-icons left" >delete</i>Delete genre</a>
+      <a class="btn btn-small"
+         (click)="onEditGenre($event, genre)"><i class="material-icons left" >edit</i>Edit genre</a>
+    </div>
+    <div class="collapsible-body" (genreId)="genre._id">
+      <app-movies
+        *ngIf="genre?._id"
+        [genreId]="genre._id"
+      >
+      </app-movies>
+    </div>
+  </li>
+</ul>
+
+<form [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div class="modal" #modal>
+    <div class="modal-content">
+      <h4 class="mb1">{{genreId?"Update":"Add new"}} genre</h4>
+
+      <div class="input-field">
+        <input
+          formControlName="name"
+          id="genre-name"
+          type="text"
+          [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+        >
+        <label for="genre-name">Genre name</label>
+        <span
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+          class="helper-text red-text"
+        >
+         Name is required.
+        </span>
+      </div>
+        <button
+          type="submit"
+          [disabled]="form.invalid || form.disabled"
+          class="waves-effect waves-light btn"
+        >
+          Save genre
+        </button>
+      </div>
+    </div>
+</form>
+
+<a class="waves-effect waves-light btn add" (click)="onAddGenre()">Add new genre</a>

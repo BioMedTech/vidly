@@ -1,0 +1,87 @@
+<div class="collection" *ngIf="movies.length !== 0; else empty">
+  <a
+    *ngFor="let movie of movies"
+    class="collection-item collection-item-icon"
+    (click)="onSelectMovie(movie)"
+  >
+          <span>
+              {{movie.title}} <strong>{{movie.dailyRentalRate}} $</strong>
+          </span>
+    <button class="btn btn-small delete" (click)="onDeleteMovie($event, movie)">
+      <i class="material-icons " >delete</i>
+    </button>
+  </a>
+</div>
+<a class="waves-effect waves-light btn add" (click)="onAddMovie()">Add movie</a>
+
+<ng-template #empty>
+  <div class="center">You don't have any movies of this genre</div>
+</ng-template>
+
+
+<form [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div class="modal" #modal>
+    <div class="modal-content">
+      <h4 class="mb1">{{movieId?"Update":"Add new"}} movie</h4>
+
+      <div class="input-field">
+        <input
+          formControlName="title"
+          id="movie-name"
+          type="text"
+          [ngClass]="{'invalid': form.get('title').invalid && form.get('title').touched}"
+        >
+        <label for="movie-name">Movie name</label>
+        <span
+          *ngIf="form.get('title').invalid && form.get('title').touched"
+          class="helper-text red-text"
+        >
+         Name is required.
+        </span>
+      </div>
+
+      <div class="input-field">
+        <input
+          formControlName="dailyRentalRate"
+          id="rental"
+          type="text"
+          [ngClass]="{'invalid': form.get('dailyRentalRate').invalid && form.get('dailyRentalRate').touched}"
+        >
+        <label for="rental">Daily rental rate</label>
+        <span
+          *ngIf="form.get('dailyRentalRate').invalid && form.get('dailyRentalRate').touched"
+          class="helper-text red-text"
+        >
+         Daily rental rate is required.
+        </span>
+      </div>
+
+
+      <div class="input-field">
+        <input
+          formControlName="numberInStock"
+          id="number"
+          type="number"
+          [ngClass]="{'invalid': form.get('numberInStock').invalid && form.get('numberInStock').touched}"
+        >
+        <label for="number">Number in stock</label>
+        <span
+          *ngIf="form.get('numberInStock').invalid && form.get('numberInStock').touched"
+          class="helper-text red-text"
+        >
+         Number in stock is required.
+        </span>
+      </div>
+      <div>
+        <button
+          type="submit"
+          [disabled]="form.invalid || form.disabled"
+          class="waves-effect waves-light btn"
+        >
+          Save movie
+        </button>
+      </div>
+    </div>
+
+  </div>
+</form>

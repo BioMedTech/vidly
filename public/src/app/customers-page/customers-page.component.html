@@ -1,0 +1,31 @@
+<table class="highlight mb2" *ngIf="rentals.length>0; else empty">
+  <thead>
+  <tr>
+    <th>№</th>
+    <th>Rental date</th>
+    <th>Movie name</th>
+    <th>Days in rental</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let rental of rentals; let inx=index">
+    <td>{{inx+1}}</td>
+    <td>{{rental.dateOut | date:'dd.MM.yyyy'}}</td>
+    <th>{{rental.movie.title}}</th>
+    <th>{{getDays(rental.dateOut)}}</th>
+    <th>{{rental.movie.dailyRentalRate * getDays(rental.dateOut)}}</th>
+    <td>
+      <button class="btn btn-small grey darken-1" (click)="selectRental(rental)">
+        <i class="material-icons">open_in_new</i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<ng-template #empty>
+  <div class="center">
+    You don't have any rentals at this moment
+  </div>
+</ng-template>

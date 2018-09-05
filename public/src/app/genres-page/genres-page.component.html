@@ -1,0 +1,11 @@
+<div *ngIf="genres$ | async as genres">
+  <div class="row center">
+    <div class="card col s4" *ngFor="let genre of genres" (click)="GetGenre(genre._id)" [routerLink]="'/main/'+genre._id">
+      {{genre.name}}
+    </div>
+  </div>
+</div>
+<app-list-movie
+  *ngIf="GenreId"
+  [genreId]="GenreId"
+></app-list-movie>

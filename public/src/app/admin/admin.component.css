@@ -1,0 +1,19 @@
+.card{
+  width: 40%;
+  display: inline-block;
+  margin-right: 30px;
+}
+.card-content{
+  margin-top: 15px;
+}
+strong{
+  font-weight: bold;
+}
+.card-content{
+  font-size: 36px;
+}
+hr{
+  border: none;
+  background:rgba(0,0,0, 0.1);
+  height: 2px;
+}

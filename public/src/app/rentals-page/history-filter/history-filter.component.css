@@ -1,0 +1,8 @@
+.input-field, .col{
+  display: inline-flex;
+  justify-content: space-between;
+
+}
+.filter-pickers, .filter-pickers>.input-field{
+  margin: 0 10px;
+}

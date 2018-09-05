@@ -1,0 +1,29 @@
+.a-sidenav {
+  transform: translateX(0) !important;
+  width: 250px !important
+}
+
+.a-sidenav h4 {
+  padding: 0 30px;
+  opacity: .8;
+  font-size: 2rem
+}
+
+.a-sidenav .bold.last {
+  position: absolute;
+  bottom: 62px;
+  width: 100%
+}
+
+a, li {
+  color: white !important;
+}
+
+.content {
+  padding: 0 30px
+}
+
+main {
+  margin-top: 20px;
+  margin-left: 250px
+}

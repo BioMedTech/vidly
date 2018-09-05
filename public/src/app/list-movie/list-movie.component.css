@@ -1,0 +1,15 @@
+strong{
+  margin-left: 10px;
+}
+.link{
+  color: rgb(255, 171, 64);
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+.link:hover{
+  cursor: pointer;
+  color: #ffd8a6;
+}
+.btn{
+  margin-top: 20px;
+}

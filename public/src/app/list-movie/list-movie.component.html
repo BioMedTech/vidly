@@ -1,0 +1,78 @@
+<div class="content">
+  <div class="row" *ngIf="movies.length !== 0; else empty">
+    <div class="col s4 m6" *ngFor="let movie of movies">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{movie.title}}</span>
+          <p>{{movie.dailyRentalRate}} $</p>
+        </div>
+        <div class="card-action">
+          <span class="link" (click)="onRent(movie)">Rent movie</span>
+          <a href="#">Show more information</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-template #empty>
+    <div class="center">There are no movies of this genre</div>
+  </ng-template>
+
+
+  <form [formGroup]="form" (ngSubmit)="onSumbit()">
+    <div class="modal" #modal>
+      <div class="modal-content">
+        <h4 class="mb1">Rent movie </h4>
+
+        <div class="input-field">
+          <input
+            formControlName="name"
+            id="customer-name"
+            type="text"
+            [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+          >
+          <label for="customer-name">Your name</label>
+          <span
+            *ngIf="form.get('name').invalid && form.get('name').touched"
+            class="helper-text red-text"
+          >
+         Name is required.
+        </span>
+        </div>
+
+        <div class="input-field">
+          <input
+            formControlName="phone"
+            id="phone"
+            type="text"
+            [ngClass]="{'invalid': form.get('phone').invalid && form.get('phone').touched}"
+          >
+          <label for="phone">Your phone</label>
+          <span
+            *ngIf="form.get('phone').invalid && form.get('phone').touched"
+            class="helper-text red-text"
+          >
+         Phone is required.
+        </span>
+        </div>
+
+        <label>
+          <input formControlName="isGold" type="checkbox">
+          <span>Do you have our premium subscription?</span>
+        </label>
+
+        <div>
+          <button
+            type="submit"
+            [disabled]="form.invalid || form.disabled"
+            class="waves-effect waves-light btn"
+          >
+            Rent a movie
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

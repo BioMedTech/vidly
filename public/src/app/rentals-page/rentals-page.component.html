@@ -1,0 +1,49 @@
+
+<div class="page-title">
+  <h4>Rentals</h4>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+      'active': isFilterVisible,
+      'red': isFiltered()
+    }"
+    data-tooltip="Open date filter"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-history-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+></app-history-filter>
+
+<div *ngIf="!reloading; else reloadingBlock">
+  <div *ngIf="rentals.length > 0; else empty">
+    <app-history-list [rentals]="rentals"></app-history-list>
+    <div
+      class="center mb2"
+      *ngIf="!noMoreOrders"
+    >
+      <button
+        class="btn waves-effect grey darken-1 btn-small"
+        (click)="loadMore()"
+        *ngIf="!loading;"
+      >
+       Load more rentals
+      </button>
+    </div>
+  </div>
+  <ng-template #empty>
+    <div class="center">There aren't any rentals in this period</div>
+  </ng-template>
+  <ng-template #reloadingBlock>
+    <div class="center">Loading...</div>
+  </ng-template>
+</div>
+
+
+

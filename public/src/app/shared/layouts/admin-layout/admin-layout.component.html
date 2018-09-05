@@ -1,0 +1,25 @@
+<ul class="sidenav sidenav-fixed a-sidenav #0097a7 cyan darken-2">
+  <li><h4 class="logo">Vidly</h4></li>
+
+  <li
+    class="bold"
+    *ngFor="let link of links"
+    routerLinkActive="active"
+  >
+    <a [routerLink]="[link.url]" class="waves-effect">
+      {{link.name}}
+    </a>
+  </li>
+
+  <li class="bold last">
+    <a href="#" class="waves-effect" (click)="logout($event)">Exit</a>
+  </li>
+</ul>
+
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+
+
+
+
